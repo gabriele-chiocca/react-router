@@ -4,7 +4,10 @@ import Header from '../components/header';
 export default function HomePage() {
   return (
     <>
-      <h1 className="text-light bg-dark p-5">Homepage</h1>;
+      <h1 className="text-center mt-5">Homepage</h1>;
+      <div className=" text-center  text-light p-5 bg-primary">
+        <h2>Benvenuti offriamo servizi internazionali di trasporto</h2>
+      </div>
     </>
   );
 }

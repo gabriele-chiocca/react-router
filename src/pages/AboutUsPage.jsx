@@ -3,7 +3,7 @@ import Header from '../components/header';
 export default function AboutUsPage() {
   return (
     <>
-      <h1 className="text-center p-5">About Us</h1>;
+      <h1 className="text-center mt-5">About Us</h1>;
       <div className="container">
         <div className="row">
           <div className="col-3">
