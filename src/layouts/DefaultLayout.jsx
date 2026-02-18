@@ -1,7 +1,7 @@
 import Header from '../components/header';
 import { Outlet } from 'react-router-dom';
 
-export default function DefaultLayour() {
+export default function DefaultLayout() {
   return (
     <>
       <Header></Header>

@@ -5,15 +5,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductsPage from './pages/ProductsPage';
+import DefaultLayout from './layouts/DefaultLayout';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" Component={HomePage} />
-          <Route path="/AboutUs" Component={AboutUsPage} />
-          <Route path="/Products" Component={ProductsPage} />
+          <Route Component={DefaultLayout}>
+            <Route path="/" Component={HomePage} />
+            <Route path="/About-us" Component={AboutUsPage} />
+            <Route path="/Products" Component={ProductsPage} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
