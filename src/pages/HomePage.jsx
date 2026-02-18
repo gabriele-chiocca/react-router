@@ -6,7 +6,7 @@ export default function HomePage() {
     <>
       <h1 className="text-center mt-5">Homepage</h1>;
       <div className=" text-center  text-light p-5 bg-primary">
-        <h2>Benvenuti offriamo servizi internazionali di trasporto</h2>
+        <h2>Benvenuti offriamo i migliori prodotti di qualità</h2>
       </div>
     </>
   );
