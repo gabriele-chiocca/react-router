@@ -26,14 +26,21 @@ export default function ProductsPage() {
     <>
       <h1 className="text-center text-light bg-primary mt-5 p-5">Products</h1>
       <div className="container">
-        <div className="row">
+        <div className="row centercontainer">
           {products.map((product) => {
             return (
-              <div className="col-3">
-                <div key={product.id}>
-                  <h3>{product.title}</h3>
-                  <img src={product.image} alt={product.title} width="100" />
-                  <p>{product.price}</p>
+              <div className="card cardwith">
+                <img
+                  src={product.image}
+                  className="card-img-top"
+                  alt={product.title}
+                ></img>
+                <div className="card-body cardwithbody">
+                  <h5 className="card-title">{product.title}</h5>
+                  <p className="card-text">{product.price}</p>
+                  <a href="#" className="btn btn-primary">
+                    Scopri di più
+                  </a>
                 </div>
               </div>
             );
