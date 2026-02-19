@@ -4,6 +4,7 @@ import AboutUsPage from './pages/AboutUsPage';
 import ProductsPage from './pages/ProductsPage';
 import DefaultLayout from './layouts/DefaultLayout';
 import SingleProduct from './pages/SingleProduct';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/About-us" Component={AboutUsPage} />
             <Route path="/Products" Component={ProductsPage} />
             <Route path="/Products/:id" Component={SingleProduct} />
+            <Route path="*" Component={NotFound} />
           </Route>
         </Routes>
       </BrowserRouter>
