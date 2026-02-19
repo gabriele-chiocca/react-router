@@ -1,16 +1,17 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { all } from 'axios';
 
 export default function SingleProduct() {
   const { id } = useParams();
   const [product, SetProduct] = useState();
   const [loader, setLoader] = useState(true);
   const [error, setError] = useState(null);
+  const [allProducts, setAllProducts] = useState([]);
 
   const navigate = useNavigate();
 
-  const fetchProduct = () => {
+  useEffect(() => {
     axios
       .get(`https://fakestoreapi.com/products/${id}`)
       .then((res) => {
@@ -20,15 +21,22 @@ export default function SingleProduct() {
         }
         console.log(res.data);
         SetProduct(res.data);
-        setLoader(false);
       })
       .catch((err) => {
         setError('Errore nel caricamento del prodotto' + err);
         setLoader(false);
+        navigate('/404');
       });
-  };
 
-  useEffect(fetchProduct, []);
+    axios
+      .get('https://fakestoreapi.com/products')
+      .then((res) => {
+        setAllProducts(res.data);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+  }, [id]);
 
   if (loader)
     return (
@@ -50,6 +58,19 @@ export default function SingleProduct() {
       </p>
     );
 
+  if (!product) return null;
+
+  const currentIndex = allProducts.findIndex((p) => p.id === Number(id));
+
+  const prevProduct = currentIndex > 0 ? allProducts[currentIndex - 1] : null;
+
+  const nextProduct =
+    currentIndex < allProducts.length - 1
+      ? allProducts[currentIndex + 1]
+      : null;
+
+  console.log(currentIndex);
+
   return (
     <>
       <div className="card cardwith">
@@ -64,6 +85,27 @@ export default function SingleProduct() {
           <a href="#" className="btn btn-primary">
             Scopri di più
           </a>
+        </div>
+      </div>
+
+      <div className="d-flex d-inline mt-5">
+        <div>
+          <button
+            className="btn btn-secondary"
+            disabled={!prevProduct}
+            onClick={() => navigate(`/Products/${prevProduct.id}`)}
+          >
+            Prodotto precedente
+          </button>
+        </div>
+        <div className="ms-3">
+          <button
+            className="btn btn-primary"
+            disabled={!nextProduct}
+            onClick={() => navigate(`/Products/${nextProduct.id}`)}
+          >
+            Prossimo prodotto
+          </button>
         </div>
       </div>
     </>
