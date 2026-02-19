@@ -40,6 +40,16 @@ export default function SingleProduct() {
       </p>
     );
 
+  if (error)
+    return (
+      <p
+        className="bg-danger p-5
+"
+      >
+        {error}
+      </p>
+    );
+
   return (
     <>
       <div className="card cardwith">
