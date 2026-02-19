@@ -16,6 +16,7 @@ function App() {
             <Route path="/About-us" Component={AboutUsPage} />
             <Route path="/Products" Component={ProductsPage} />
             <Route path="/Products/:id" Component={SingleProduct} />
+            <Route path="/404" Component={NotFound} />
             <Route path="*" Component={NotFound} />
           </Route>
         </Routes>

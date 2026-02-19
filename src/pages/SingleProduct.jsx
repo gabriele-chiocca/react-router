@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -8,16 +8,22 @@ export default function SingleProduct() {
   const [loader, setLoader] = useState(true);
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+
   const fetchProduct = () => {
     axios
       .get(`https://fakestoreapi.com/products/${id}`)
       .then((res) => {
+        if (!res.data || !res.data.id) {
+          navigate('/404');
+          return;
+        }
         console.log(res.data);
         SetProduct(res.data);
         setLoader(false);
       })
       .catch((err) => {
-        setError('Errore nel caricamento del prodotto');
+        setError('Errore nel caricamento del prodotto' + err);
         setLoader(false);
       });
   };
@@ -33,7 +39,6 @@ export default function SingleProduct() {
         Caricamento...
       </p>
     );
-  if (error) return <p className="bg-danger p-5">{error}</p>;
 
   return (
     <>
