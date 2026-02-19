@@ -5,6 +5,10 @@ export default function ProductsPage() {
   const [products, setNewProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [pagination, setPagination] = useState({
+    next: null,
+    prev: null,
+  });
 
   useEffect(() => {
     axios
